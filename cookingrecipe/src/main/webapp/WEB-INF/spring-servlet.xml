@@ -13,28 +13,26 @@
         https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<!-- Enables the Spring MVC @Controller programming model -->
+
 	<mvc:annotation-driven validator="validator">
+
 	</mvc:annotation-driven>
 
 	<!-- Localization of hibernate messages during validation! -->
-	<bean name="validator"
-		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-		<property name="validationMessageSource">
-			<ref bean="messageSource" />
-		</property>
-	</bean>
-	<context:annotation-config></context:annotation-config>
-	<context:component-scan
-		base-package="com.cookingrecipe.controller" />
-	<context:component-scan
-		base-package="com.cookingrecipe.service" />
-	<context:component-scan
-		base-package="com.cookingrecipe.dao" />
-	<context:component-scan
-		base-package="com.cookingrecipe.entity" />
-	<!-- resources -->
-	<mvc:resources mapping="/resources/**"
-		location="/resources/" />
+
+    <bean name="validator"
+        class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="validationMessageSource">
+            <ref bean="messageSource" />
+        </property>
+    </bean>
+    <context:annotation-config></context:annotation-config>
+	<context:component-scan base-package="com.cookingrecipe.controller" />
+	<context:component-scan base-package="com.cookingrecipe.service" />
+	<context:component-scan base-package="com.cookingrecipe.dao" />
+	<context:component-scan base-package="com.cookingrecipe.enetity" />
+ 	<!-- resources -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -92,10 +90,10 @@
 		</property>
 	</bean>
 
-	<bean id="viewResolver"
-		class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
-		<property name="templateEngine" ref="templateEngine" />
-		<!-- NOTE 'order' and 'viewNames' are optional -->
-		<property name="order" value="1" />
+    <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+  		<property name="templateEngine" ref="templateEngine" />
+  		<!-- NOTE 'order' and 'viewNames' are optional -->
+  		<property name="order" value="1" />
+
 	</bean>
 </beans>
