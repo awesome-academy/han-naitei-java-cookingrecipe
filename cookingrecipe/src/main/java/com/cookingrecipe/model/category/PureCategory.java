@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
-import com.cookingrecipe.entity.Recipe;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

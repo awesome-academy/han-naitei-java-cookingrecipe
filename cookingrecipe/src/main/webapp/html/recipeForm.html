@@ -16,6 +16,7 @@
   	  <div class="form-group">
 	    <label for="name" th:text="#{create.recipe.name}"></label>
 	    <input type="text" class="form-control" name="name" th:field="*{name}">
+	    <!-- <p th:if="${#fields.hasErrors('name')}" th:errors="*{message}" style="color: #FF4081">Message Error</p> -->
 	  </div>
 	  <!-- Time -->
 	  <div class="form-group">
@@ -29,7 +30,7 @@
 	  	<div class="custom-control custom-checkbox">
 		  <input 	type="checkbox" 
 		  			class="custom-control-input" 
-		  			th:value="${cat.type}" 
+		  			th:value="${cat.id}" 
 		  			th:id="${state.index}"
 		  			name="cats">
 		  <label class="custom-control-label" th:text="${cat.type}" th:for="${state.index}"></label>
@@ -40,6 +41,7 @@
 	  <div class="form-group">
 	    <label for="ingredient" th:text="#{create.recipe.ingredient}">Ingredient</label>
 	    <textarea type="text" class="form-control" name="ingredient" th:field="*{ingredient}"></textarea>
+	   <!--  <p th:if="${#fields.hasErrors('ingredient')}" th:errors="*{ingredient}" style="color: #FF4081">Message Error</p> -->
 	  </div>
 	  <label th:text="#{create.recipe.howtomake}">How to make</label>
 	  

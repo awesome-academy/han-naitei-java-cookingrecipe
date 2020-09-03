@@ -1,15 +1,20 @@
 package com.cookingrecipe.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.cookingrecipe.entity.Recipe;
 import com.cookingrecipe.model.category.PureCategory;
 import com.cookingrecipe.model.recipe.RecipeRequest;
 import com.cookingrecipe.model.comment.CommentRequest;
@@ -30,7 +35,7 @@ public class RecipeController {
 	private ICategoryService categoryService;
 	
 	@GetMapping(path = "/{idRecipe}")
-	public String show(@PathVariable Integer idRecipe, ModelMap model) {
+	public String show(@PathVariable Integer idRecipe, Model model) {
 		RecipeResponse recipeResponse = recipeService.getById(idRecipe);
 		model.addAttribute("recipe", recipeResponse);
 		model.addAttribute("comment", new CommentRequest());
@@ -45,5 +50,17 @@ public class RecipeController {
 		return "recipeForm";
 	}
 	
-
+	@PostMapping("")
+	public String create(@ModelAttribute("recipe") RecipeRequest p,
+						@RequestParam(value="cats", required=false) ArrayList<String> cats,
+						@RequestParam(value="addstep", required=false) ArrayList<String> steps,
+						Model model) {
+		Recipe r = new Recipe();
+		if(recipeService.createRecipe(r,p, cats, steps)!=null) {
+			model.addAttribute("message", "Create recipe successfull!");
+		}else {
+			model.addAttribute("message", "Create recipe failed!");
+		}
+		return "redirect:/recipes/" + r.getId();
+	}
 }

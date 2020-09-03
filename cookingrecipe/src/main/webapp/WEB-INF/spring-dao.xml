@@ -10,10 +10,13 @@
 	<bean id="recipeDAO" class="com.cookingrecipe.dao.RecipeDAOImp">
 		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
 	</bean>
-	<bean id="userDAO" class="com.cookingrecipe.dao.user.UserDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	<bean id="userDAO" class="com.cookingrecipe.dao.user.UserDaoImpl" >
+     	<property name="sessionFactory" ref="sessionFactory" />
+ 	</bean>
 	<bean id="categoryDAO" class="com.cookingrecipe.dao.CategoryDAOImp">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	<bean id="stepDAO" class="com.cookingrecipe.dao.StepDAOImp">
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
 	<bean id="commentDAO" class="com.cookingrecipe.dao.CommentDAOImp" >
