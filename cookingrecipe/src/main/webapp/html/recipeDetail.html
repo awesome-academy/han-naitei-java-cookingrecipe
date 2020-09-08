@@ -35,27 +35,37 @@
   		<!-- Nguyên liệu -->
   			<div class="ingredients">
   			<h2 th:text="#{recipe.ingredient}">Ingredient</h2>
-  			<p th:text="${recipe.ingredients}">Nấm đùi gà 1 túi, ớt 1 quả, sả 2 cây</p>
+  			<p th:text="${recipe.ingredient}">Nấm đùi gà 1 túi, ớt 1 quả, sả 2 cây</p>
   			</div>
   			
   			<!-- Các bước để thực hiện -->
   			<h2 th:text="#{recipe.guide}"></h2>
   			<th:block th:each="step,state:${recipe.steps}">
   				<li class="step-card">
-  					<span th:text="${state.index + 1}"></span>
-  					<span th:text="${step.content}"></span><br>
-  					<img alt="image step" th:src="${step.image}">
+  					<span class="step-number" th:text="${state.count}"></span>
+  					<span class="step-content" th:text="${step.content}"></span><br>
+  					<!-- <img alt="image step" th:src="${step.image}"> -->
+  					<img alt="image step" th:src="@{/resources/image/recipe-default.jpg}">
   				</li>
   			</th:block>
   			
   			<!-- Comment -->
+  			<li class="comment-card">
   			<h2 th:text="#{recipe.comment}"></h2>
+  			<form class="form-inline form comment-form" th:object="${comment}" th:action="@{/recipes/__${recipe.id}__/comments}" method="post">
+				  <div class="form-group">
+				    <input type="text" class="form-control comment-input" placeholder="New Comment..." th:field="*{content}">
+				    <button type="submit" class="btn-comment btn btn-submit" th:text="#{comment.submit}">Submit</button>
+				 </div>
+			</form>
+			
   			<th:block th:each="comment,state:${recipe.comments}">
-  				<li class="comment-card">
+  				<div>
   					<span class="user-comment" th:text="${comment.user}"></span>
   					<span th:text="${comment.content}"></span><br>
-  				</li>
+  				</div><hr>
   			</th:block>
+  			</li>
   		</div>
   		<p class="space"></p>
   	</div>
