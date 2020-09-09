@@ -1,6 +1,7 @@
 package com.cookingrecipe.service.recipe;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -105,5 +106,22 @@ public class RecipeServiceImp implements IRecipeService {
 			log.error(null, e);
 		}
 		return result;
+	}
+
+	@Override
+	public List<RecipeResponse> findAll() {
+		List<Recipe> recipes = new ArrayList<>();
+		List<RecipeResponse> responses = new ArrayList<>();
+		try {
+			recipes = recipeDAO.findAll();
+			for(Recipe recipe:recipes) {
+				RecipeResponse recipeResponse = new RecipeResponse();
+				BeanUtils.copyProperties(recipe, recipeResponse);
+				responses.add(recipeResponse);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return responses;
 	}
 }
