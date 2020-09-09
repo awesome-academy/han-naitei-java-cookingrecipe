@@ -30,15 +30,10 @@ public class UserController {
 	 this.userService.createAccount(p);
 	 return "redirect:/signup";
 	}
-	@RequestMapping(value =  "/users/{userId}")
-	  public String profile(Model model) {
-	    return "profile";
-	  }
 	
 	@RequestMapping(value =  "/users/{userId}")
 	  public String updateProfile(Model model) {
 	    return "updateProfile";
 	  }
-
 
 }

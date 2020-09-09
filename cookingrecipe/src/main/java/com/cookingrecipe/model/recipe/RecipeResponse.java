@@ -1,5 +1,6 @@
 package com.cookingrecipe.model.recipe;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import javax.validation.constraints.NotBlank;
@@ -36,6 +37,8 @@ public class RecipeResponse {
 	private List<Comment> comments;
 
 	private Set<Category> categories;
+	
+	private Date createdAt;
 	
 	public RecipeResponse() {}
 
