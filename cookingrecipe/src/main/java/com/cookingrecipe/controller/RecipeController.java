@@ -63,4 +63,19 @@ public class RecipeController {
 		}
 		return "redirect:/recipes/" + r.getId();
 	}
+	
+	@PostMapping(value="/search")
+	public String searchByName(	Model model,
+								@RequestParam(value="search", required = false) String name ) {
+		return "redirect:/recipes/search/" + name;
+	}
+	
+	@GetMapping("/search/{name}")
+	public String resultSearch(	Model model,
+								@PathVariable(value="name") String name) {
+		List<RecipeResponse> recipes = recipeService.searchByName(name);
+		model.addAttribute("recipes", recipes);
+		model.addAttribute("count", recipes.size());
+		return "resultSearch";
+	}
 }

@@ -6,10 +6,9 @@ var i=1;
 				  			<span>Step</span>
 				  			<span>${i}</span>
 				  		</label>
-				    	<input type="text" class="form-control" placeholder="Input how to make" name="addstep">
+				    	<textarea type="text" class="form-control" placeholder="Input how to make" name="addstep"></textarea>
 				  	</div>`);
 		i++;
-  });
-  
+  });  
 });
 		
