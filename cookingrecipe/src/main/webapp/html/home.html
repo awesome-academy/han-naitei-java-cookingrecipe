@@ -1,153 +1,125 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8" >
-	<title>Cooking Recipe</title>
+<html xmlns:th="http://www.thymeleaf.org"
+ 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+ <head>
+ <meta charset="UTF-8" >
+ 	<title>Cooking Recipe</title>
 	<th:block th:insert="~{layout/base-layout :: link}"></th:block>
 	<th:block th:insert="~{layout/base-layout :: head/script}"></th:block>
 </head>
 <body>
-	<div th:insert="~{layout/header :: header}"></div>
-   <body>
-<nav>
-    <ul>
-     <li class="search">
-            <a th:href="@{/recipeDetail}" class="btn btn-primary" th:text="#{home.search}">Search</a>
-            <div class="search-bar">
-                <form>
-                    <input type="text" name="search" placeholder="Search...">
-                </form>
-            </div>
-        </li>
-        <li><a th:href="@{/recipeDetail}" th:text="#{home.breakfast}">Breakfast</a></li>
-        <li><a th:href="@{/recipeDetail}" th:text="#{home.lunch}">Lunch</a></li>
-        <li><a th:href="@{/recipeDetail}" th:text="#{home.dinner}">Dinner</a></li>
-        <li><a th:href="@{/recipeDetail}" th:text="#{home.fastfood}">Fast Food</a></li>
-        <li><a th:href="@{/recipeDetail}" th:text="#{home.diet}">Diet</a></li>
-        <li><a th:href="@{/recipeDetail}" th:text="#{home.drink}">Drink</a></li>
-       
-    </ul>
-</nav>
-  		<p class="space"></p>
+ 	<div th:insert="~{layout/header :: header}"></div>
+    <body>
+ <nav>
+        <button type="button" class="btn btn-outline-primary" th:href="@{/recipeDetail}" th:text="#{home.breakfast}"></button>
+         <button type="button" class="btn btn-outline-danger"th:href="@{/recipeDetail}" th:text="#{home.lunch}"></button>
+ 		<button type="button" class="btn btn-outline-secondary"th:href="@{/recipeDetail}" th:text="#{home.dinner}"></button>
+ 		<button type="button" class="btn btn-outline-success"th:href="@{/recipeDetail}" th:text="#{home.fastfood}"></button>
+ 		<button type="button" class="btn btn-outline-warning"th:href="@{/recipeDetail}" th:text="#{home.diet}"></button>
+ 		<button type="button" class="btn btn-outline-info"th:href="@{/recipeDetail}" th:text="#{home.drink}"></button>
+ 		<button type="button" class="btn btn-outline-light">Fruit</button>
+ 		<button type="button" class="btn btn-outline-dark">Popular</button>
+ 		</nav>
+ 		<div class="input-group mb-3">
+   <input type="text" class="form-control" placeholder="Search...">
+   <div class="input-group-append">
+     <button class="btn btn-success" type="submit">Go</button> 
+   </div>
+ </div>
+ </body>
+ <div class="row">
+  <div class="home-leftcolumn">
 
-</body>
-<div class="row">
-  <div class="leftcolumn">
+   <div class="home-profile-sidebar">  
+
+       <h1 class="text-center">New Popular Recipes</h1> 
+
+   <form>
+   <div class="card">
+        <h3>*** Gà xào sả ớt ***</h3>
+                <img src="https://beptruong.edu.vn/wp-content/uploads/2013/01/ga-xao-sa-ot.jpg" alt="..." class="img-thumbnail"width="300" height="100">
+ 			<span>Time: </span>
+   				<span>30</span>ph
+   			</p>
+
+   			<small>
+   				<em>Created At: </em>
+   				<em>2020/08/31</em>
+   			</small>
+   			<p>
+   					<span>30</span>
+ 	  			<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+ 	  				<path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+ 				</svg>
+ 			</p>
+ 					<div>
+        	   <a th:href="@{/recipeDetail}" class="text-center" th:text="#{home.viewdetail}">View Detail</a>
+         <button type="button" class="btn btn-outline-danger" th:text="#{profile.like}">Like</button>                	   
+ 	    <button type="button" class="btn btn-outline-danger" th:text="#{profile.share}">Share</button>                
+ 	    	</div>
+ 			<div class="form-group">
+   <label for="comment">Comment:</label>
+   <textarea class="form-control" rows="1" id="comment"></textarea>
+ </div>
+  </div>
       <div class="card">
-  <div class="container">
-	  <div class="recipe-title">
-		<img class="recipe-image-home" alt="food image" th:src="@{/resources/image/image_6.jpg}">
-  		<img class="opacity-home" th:src="@{/resources/image/black.png}">
-  		<div class="overview">
-  			<!-- <h1 th:text="${name}">Name's food:</h1> -->
-  			<p>
-  			  	<span th:text="#{recipe.name}">Name's food: </span>
-  			  	<span th:text="${name}">Name's food</span>
-  			  	<br></br>
-  				<span th:text="#{recipe.time}">Time: </span>
-  				<span th:text="${time}"></span>30(ph)
-  			</p>
-  			<p>
-  				<span th:text="${like}">0</span>30
-	  			<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-	  				<path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-				</svg>
-			</p>
-  			<small>
-  				<em th:text="#{recipe.createdAt}">Created At: </em>
-  				<em th:text="${createdAt}"></em>2020/08/31
-  			</small>
-  		</div>  
-	  </div>
-	   <a th:href="@{/recipeDetail}" class="btn btn-primary" th:text="#{home.viewdetail}">View Detail</a>
-	  
-  		<div class="recipe-content">
-  		
- 			<!-- Comment -->
-  			<h2 th:text="#{recipe.comment}"></h2>
-  			<th:block th:each="comment,state:${comments}">
-  				<li class="comment-card">
-  					<span class="user-comment" th:text="${comment.user}"></span>
-  					<span th:text="${comment.content}"></span><br>
-  				</li>
-  			</th:block>
-  		</div>
-  		<div class="input-group flex-nowrap">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="addon-wrapping"></span>
-  </div>
-  <input type="text" class="form-control" placeholder="Comment..." aria-label="Username" aria-describedby="addon-wrapping">
-</div>
-  		<p class="space"></p>
-  	</div>
-  	  	</div>
-  	
-  	<div class="container">
-	  <div class="recipe-title">
-		<img class="recipe-image-home" alt="food image" th:src="@{/resources/image/image_6.jpg}">
-  		<img class="opacity-home" th:src="@{/resources/image/black.png}">
-  		<div class="overview">
-  			<!-- <h1 th:text="${name}">Name's food:</h1> -->
-  			<p>
-  			  	<span th:text="#{recipe.name}">Name's food: </span>
-  			  	<span th:text="${name}">Name's food</span>
-  			  	<br></br>
-  				<span th:text="#{recipe.time}">Time: </span>
-  				<span th:text="${time}"></span>30(ph)
-  			</p>
-  			<p>
-  				<span th:text="${like}">0</span>30
-	  			<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-	  				<path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-				</svg>
-			</p>
-  			<small>
-  				<em th:text="#{recipe.createdAt}">Created At: </em>
-  				<em th:text="${createdAt}"></em>2020/08/31
-  			</small>
-  		</div>  
-	  </div>
-	   <a th:href="@{/recipeDetail}" class="btn btn-primary" th:text="#{home.viewdetail}">View Detail</a>
-	  
-  		<div class="recipe-content">
-  		
- 			<!-- Comment -->
-  			<h2 th:text="#{recipe.comment}"></h2>
-  			<th:block th:each="comment,state:${comments}">
-  				<li class="comment-card">
-  					<span class="user-comment" th:text="${comment.user}"></span>
-  					<span th:text="${comment.content}"></span><br>
-  				</li>
-  			</th:block>
-  		</div>
-  		<div class="input-group flex-nowrap">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="addon-wrapping"></span>
-  </div>
-  <input type="text" class="form-control" placeholder="Comment..." aria-label="Username" aria-describedby="addon-wrapping">
-</div>
-  		<p class="space"></p>
-  	</div>
-  	  </div>
-  	  <div class="rightcolumn">
-    <div class="card">
-      <h2 th:text="#{home.about}">About us</h2>
-      <div class="fakeimg" style="height:100px;" th:text="#{home.image}">Image</div>
-      <p th:text="#{home.aboutus}">Cooking Recipe is a useful website to help you find and learn delicious recipes </p>
-    </div>
-    <div class="card">
-      <h3>####</h3>
-      <div class="fakeimg"><p>###</p></div>
-      <div class="fakeimg"><p>###</p></div>
-      <div class="fakeimg"><p>###</p></div>
-    </div>
-    <div class="card">
-      <h3>#####</h3>
-<button class="button">######</button>
+        <h3>*** Salad rau củ ***</h3>
+                <img src="https://cdn.phunuvagiadinh.vn/ctvseo_osc/cach-lam-salad-rau-cu-1.jpg" alt="..." class="img-thumbnail"width="300" height="100">
+        	   <a th:href="@{/recipeDetail}" class="text-center" th:text="#{home.viewdetail}">View Detail</a>
 
-    </div>
+   			<p>
+   					<span>Time: </span>
+   				<span>10</span>ph
+   			</p>
+   			
+   			<small>
+   				<em>Created At: </em>
+   				<em>2020/08/05</em>
+   			</small>
+
+ 	  			<p>
+   				<span>10</span>
+ 	  			<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+ 	  				<path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+ 				</svg>
+ 			</p>
+ 			<div>
+        	   <a th:href="@{/recipeDetail}" class="text-center" th:text="#{home.viewdetail}">View Detail</a>
+         <button type="button" class="btn btn-outline-danger" th:text="#{profile.like}">Like</button>                	   
+ 	    <button type="button" class="btn btn-outline-danger" th:text="#{profile.share}">Share</button>                
+ 	    	</div>
+ 			<div class="form-group">
+   <label for="comment">Comment:</label>
+   <textarea class="form-control" rows="1" id="comment"></textarea>
+ </div>
   </div>
-  </div>	
-  <div th:insert="~{layout/footer :: footer}"></div>
-</body>
-</html>
+ </form>
+   	</div>
+   	 </div>
+      <div class="home-rightcolumn">
+        <div class="profile-sidebar">  
+
+ <div class="card">
+        <h2 th:text="#{home.about}">About us</h2>
+        <div class="fakeimg" style="height:150px;">
+         <img src="https://www.washingtonpost.com/resizer/Q-oo6k-X1b1g4oEMfH-8f5Tl5CI=/1484x0/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/YCTFZKYJLE7ABOI64DGTQESORY.jpg" alt="..." class="img-thumbnail"width="200" height="200">
+
+        </div>
+        <p th:text="#{home.aboutus}">Cooking Recipe is a useful website to help you find and learn delicious recipes </p>
+      </div>
+   <div class="card">
+        <h3>Most Popular</h3>
+                <img src="https://images.squarespace-cdn.com/content/v1/56a1acf7d82d5ee027b340cb/1512194254472-YH9BU88S0VWM22VPQJS3/ke17ZwdGBToddI8pDm48kDyP5mAvwyYlDygSv469sgd7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UcTbVJ7wPmK7gYb6oyvBBEw5xB8a-kDUn67pzOk6hzKL6mvBYcl49pnuFyRTfR0mZA/bigstock-Various-Of-Thai-Food-Cooking-I-164101082WEB.jpg?format=2500w" alt="..." class="img-thumbnail"width="300" height="100">
+
+      </div>
+      <div class="card">
+        <h3>Contact with us</h3>
+  <button class="button">Facebook</button>
+   	  </div>
+   	</div>
+   	</div>
+   </div>
+    <div th:insert="~{layout/footer :: footer}"></div>
+ </body>
+ </html>
+   
