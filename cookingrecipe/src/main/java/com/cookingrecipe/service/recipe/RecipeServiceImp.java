@@ -39,23 +39,22 @@ public class RecipeServiceImp implements IRecipeService {
 	private IStepService stepService;
 
 	@Override
-	public RecipeResponse getById(Integer id){
+	public RecipeResponse getById(Integer id) throws Exception {
 		try {
 			Recipe recipe = recipeDAO.getRecipeDetails(id);
 			if (recipe == null)
-				return null;
+				throw new Exception("Recipe not found.");
 			RecipeResponse recipeResponse = new RecipeResponse();
 			BeanUtils.copyProperties(recipe, recipeResponse);
 			return recipeResponse;
 		} catch (Exception e) {
-			e.getCause();
-			return null;
+			throw e;
 		}
 	}
 
 	@Transactional(readOnly = false)
 	@Override
-	public Recipe createRecipe(Recipe r, RecipeRequest p, ArrayList<String> cats, ArrayList<String> steps) {
+	public Recipe createRecipe(Recipe r, RecipeRequest p, ArrayList<String> cats, ArrayList<String> steps) throws Exception {
 		log.info("Processing in RecipeServiceImp...");
 		try {
 			log.info("Saving new recipe...");
@@ -67,6 +66,7 @@ public class RecipeServiceImp implements IRecipeService {
 
 		} catch (Exception e) {
 			log.error("Save recipe failed!", e);
+			throw e;
 		}
 		return r;
 	}
@@ -110,7 +110,7 @@ public class RecipeServiceImp implements IRecipeService {
 	}
 
 	@Override
-	public List<RecipeResponse> findAll() {
+	public List<RecipeResponse> findAll() throws Exception {
 		List<Recipe> recipes = new ArrayList<>();
 		List<RecipeResponse> responses = new ArrayList<>();
 		try {
@@ -122,6 +122,7 @@ public class RecipeServiceImp implements IRecipeService {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 		return responses;
 	}

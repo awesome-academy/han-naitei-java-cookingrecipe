@@ -7,7 +7,7 @@ import com.cookingrecipe.entity.Recipe;
 import com.cookingrecipe.model.category.PureCategory;
 
 public interface ICategoryService {
-	List<PureCategory> findAll();
+	List<PureCategory> findAll() throws Exception;
 	void update(Category cat, Recipe recipe);
 	Category getById(Integer id);
 }

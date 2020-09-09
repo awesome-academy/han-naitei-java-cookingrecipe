@@ -17,7 +17,7 @@ public class BaseController {
 	private IRecipeService recipeService;
 	
 	@GetMapping(value = "/")
-	public String index(Model model) {
+	public String index(Model model) throws Exception {
 		List<RecipeResponse> recipes = recipeService.findAll();
 		model.addAttribute("recipes", recipes);
 		return "home";

@@ -35,7 +35,7 @@ public class RecipeController {
 	private ICategoryService categoryService;
 	
 	@GetMapping(path = "/{idRecipe}")
-	public String show(@PathVariable Integer idRecipe, Model model) {
+	public String show(@PathVariable Integer idRecipe, Model model) throws Exception {
 		RecipeResponse recipeResponse = recipeService.getById(idRecipe);
 		model.addAttribute("recipe", recipeResponse);
 		model.addAttribute("comment", new CommentRequest());
@@ -43,7 +43,7 @@ public class RecipeController {
 	}
 	
 	@GetMapping("/create")
-	public String create(Model model){
+	public String create(Model model) throws Exception{
 		List<PureCategory> categories = categoryService.findAll();
 		model.addAttribute("categories", categories);
 		model.addAttribute("recipe", new RecipeRequest());
@@ -54,13 +54,15 @@ public class RecipeController {
 	public String create(@ModelAttribute("recipe") RecipeRequest p,
 						@RequestParam(value="cats", required=false) ArrayList<String> cats,
 						@RequestParam(value="addstep", required=false) ArrayList<String> steps,
-						Model model) {
+						Model model) throws Exception {
 		Recipe r = new Recipe();
-		if(recipeService.createRecipe(r,p, cats, steps)!=null) {
+		try {
+			recipeService.createRecipe(r,p, cats, steps);
 			model.addAttribute("message", "Create recipe successfull!");
-		}else {
-			model.addAttribute("message", "Create recipe failed!");
+			return "redirect:/recipes/" + r.getId();
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
 		}
-		return "redirect:/recipes/" + r.getId();
 	}
 }
