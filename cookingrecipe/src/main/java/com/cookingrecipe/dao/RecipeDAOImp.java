@@ -1,6 +1,7 @@
 package com.cookingrecipe.dao;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.hibernate.Session;
@@ -62,4 +63,5 @@ public class RecipeDAOImp extends GenericDAOImp<Recipe, Integer> implements IRec
 		
 		return recipes;
 	}
+
 }

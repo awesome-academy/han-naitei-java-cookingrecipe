@@ -7,10 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.cookingrecipe.model.category.PureCategory;
 import com.cookingrecipe.model.recipe.RecipeResponse;
-import com.cookingrecipe.service.category.ICategoryService;
 import com.cookingrecipe.service.recipe.IRecipeService;
+
+import com.cookingrecipe.model.category.PureCategory;
+import com.cookingrecipe.service.category.ICategoryService;
 
 
 @Controller

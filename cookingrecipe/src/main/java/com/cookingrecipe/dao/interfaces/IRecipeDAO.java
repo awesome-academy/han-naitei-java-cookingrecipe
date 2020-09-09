@@ -2,7 +2,6 @@ package com.cookingrecipe.dao.interfaces;
 
 import java.util.List;
 
-import com.cookingrecipe.entity.Category;
 import com.cookingrecipe.entity.Recipe;
 
 public interface IRecipeDAO extends IGenericDAO<Recipe, Integer>{
