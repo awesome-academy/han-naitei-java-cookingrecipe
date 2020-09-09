@@ -16,12 +16,13 @@
   	  <div class="form-group">
 	    <label for="name" th:text="#{create.recipe.name}"></label>
 	    <input type="text" class="form-control" name="name" th:field="*{name}">
-	    <!-- <p th:if="${#fields.hasErrors('name')}" th:errors="*{message}" style="color: #FF4081">Message Error</p> -->
+	    <small class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" >Error</small>
 	  </div>
 	  <!-- Time -->
 	  <div class="form-group">
 	    <label for="time" th:text="#{create.recipe.time}"></label>
 	    <input type="text" class="form-control" name="time" th:field="*{time}">
+	    <small class="text-danger" th:if="${#fields.hasErrors('time')}" th:errors="*{time}" >Error</small>
 	  </div>
 	  
 	  <!-- Categories -->
@@ -41,8 +42,9 @@
 	  <div class="form-group">
 	    <label for="ingredient" th:text="#{create.recipe.ingredient}">Ingredient</label>
 	    <textarea type="text" class="form-control" name="ingredient" th:field="*{ingredient}"></textarea>
-	   <!--  <p th:if="${#fields.hasErrors('ingredient')}" th:errors="*{ingredient}" style="color: #FF4081">Message Error</p> -->
+	    <small class="text-danger" th:if="${#fields.hasErrors('ingredient')}" th:errors="*{ingredient}" style="color: #FF4081">Error</small>
 	  </div>
+
 	  <label th:text="#{create.recipe.howtomake}">How to make</label>
 	  
 	  <button type="button" class="add-step"><svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-patch-plus-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -56,8 +58,10 @@
 	  			<span th:text="${state.count}"></span>
 	  		</label>
 	    	<input type="text" class="form-control" th:field="*{steps[__${state.index}__].content}" placeholder="Input how to make">
+	    	
 	  	</div>
 	  </div>
+  	  <small class="text-danger" th:if="${addstep == null}" th:text="${stepsError}" >Error</small>
 	 <div class="form-group">
 	    <label for="image" th:text="#{create.recipe.image}">Image</label>
 	    <div class="custom-file">
