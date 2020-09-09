@@ -1,25 +1,28 @@
 package com.cookingrecipe.service.category;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cookingrecipe.dao.interfaces.ICategoryDAO;
 import com.cookingrecipe.entity.Category;
+import com.cookingrecipe.entity.Recipe;
 import com.cookingrecipe.model.category.PureCategory;
 
-@Service
+@Service(value = "categoryServiceImp")
 @Transactional(readOnly = true)
 public class CategoryServiceImp implements ICategoryService{
+	
+	private static Logger log = LoggerFactory.getLogger(CategoryServiceImp.class);
 	@Autowired
 	private ICategoryDAO categoryDAO;
-	
+
 	@Override
 	public List<PureCategory> findAll() {
 		List<Category> categories;
@@ -39,5 +42,29 @@ public class CategoryServiceImp implements ICategoryService{
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	@Transactional(readOnly = false)
+	@Override
+	public void update(Category cat, Recipe recipe) {
+		try {
+			log.info("Processing update in CategoryServiceImp...");
+			categoryDAO.update(cat, recipe);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	@Override
+	public Category getById(Integer id) {
+		log.info("Processing getbyId in CategoryServiceImp...");
+		Category cat = new Category();
+		try {
+			cat = categoryDAO.getById(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return cat;
 	}
 }

@@ -8,13 +8,16 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "Steps")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Step {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,4 +33,11 @@ public class Step {
 	@ManyToOne
 	private Recipe recipe;
 
+	public Step(String content, Recipe recipe) {
+		super();
+		this.content = content;
+		this.recipe = recipe;
+	}
+
+	
 }

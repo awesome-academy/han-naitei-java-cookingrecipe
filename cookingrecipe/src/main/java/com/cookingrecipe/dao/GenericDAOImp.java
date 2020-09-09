@@ -63,4 +63,5 @@ public class GenericDAOImp<E, Id extends Serializable> implements IGenericDAO<E,
 		getHibernateTemplate().flush();
 		return entity;
 	}
+
 }

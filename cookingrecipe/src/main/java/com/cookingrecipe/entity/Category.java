@@ -27,5 +27,6 @@ public class Category {
 	private String type;
 
 	@ManyToMany(mappedBy = "categories")
-	private List<Recipe> recipes;
+	private List<Recipe> recipes;	
+	
 }

@@ -1,13 +1,12 @@
 package com.cookingrecipe.model.recipe;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.NumberFormat;
-import com.cookingrecipe.entity.Category;
-import com.cookingrecipe.entity.Comment;
+
 import com.cookingrecipe.entity.Step;
 import com.cookingrecipe.entity.User;
 import lombok.Getter;
@@ -19,7 +18,7 @@ public class RecipeRequest {
 
 	private Integer id;
 
-	@NotBlank
+	@NotBlank(message="{error.notBlank}")
 	private String name;
 
 	@NumberFormat
@@ -30,12 +29,10 @@ public class RecipeRequest {
 	@NotNull
 	private List<Step> steps;
 	
-	@NotBlank
+	@NotBlank(message="{error.notBlank}")
 	private String ingredient;
 
-	@NotNull
 	private User user;
 
-	private Set<Category> categories;
 
 }
