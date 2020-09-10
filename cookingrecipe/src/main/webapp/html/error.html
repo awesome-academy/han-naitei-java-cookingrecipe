@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Cooking Recipe</title>
+<th:block th:insert="~{layout/base-layout :: link}"></th:block>
+<th:block th:insert="~{layout/base-layout :: head/script}"></th:block>
+</head>
+<body>
+	<div th:insert="~{layout/header :: header}"></div>
+	<div class="container">
+		<h1>Error</h1>
+		[[${error}]]
+	</div>
+
+	<div th:insert="~{layout/footer :: footer}"></div>
+</body>
+</html>
