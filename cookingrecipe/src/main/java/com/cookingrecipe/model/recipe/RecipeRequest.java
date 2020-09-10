@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.NumberFormat;
 
@@ -18,7 +19,7 @@ public class RecipeRequest {
 
 	private Integer id;
 
-	@NotBlank(message="{error.notBlank}")
+	@NotBlank(message="{error.notBlank.recipe.name}")
 	private String name;
 
 	@NumberFormat
@@ -26,12 +27,13 @@ public class RecipeRequest {
 
 	private String image;
 
-	@NotNull
+//	@NotNull(message = "{error.notNull.recipe.steps}")
 	private List<Step> steps;
 	
-	@NotBlank(message="{error.notBlank}")
+	@NotBlank(message="{error.notBlank.recipe.ingredient}")
 	private String ingredient;
 
+//	@NotNull
 	private User user;
 
 
