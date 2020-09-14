@@ -12,4 +12,6 @@ public interface IRecipeService {
 	List<RecipeResponse> findAll();
 	Recipe createRecipe(Recipe r, RecipeRequest p, ArrayList<String> cats, ArrayList<String> steps);
 	Recipe getRecipeById(Integer id);
+	List<RecipeResponse> searchByName(String name);
+	List<RecipeResponse> searchByCategory(Integer idCat);
 }

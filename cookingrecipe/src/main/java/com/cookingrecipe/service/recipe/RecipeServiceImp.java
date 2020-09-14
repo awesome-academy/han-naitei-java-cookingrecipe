@@ -125,4 +125,40 @@ public class RecipeServiceImp implements IRecipeService {
 		}
 		return responses;
 	}
+
+	@Override
+	public List<RecipeResponse> searchByName(String name) {
+		List<RecipeResponse> responses = new ArrayList<>();
+		try {
+			List<Recipe> recipes = recipeDAO.searchByName(name);
+			for(Recipe recipe:recipes) {
+				RecipeResponse recipeResponse = new RecipeResponse();
+				BeanUtils.copyProperties(recipe, recipeResponse);
+				responses.add(recipeResponse);
+			}
+			return responses;
+			
+		} catch (Exception e) {
+			log.error("Error at function searchByName in RecipeServiceImp....", e);
+			return null;
+		}
+	}
+
+	@Override
+	public List<RecipeResponse> searchByCategory(Integer idCat) {
+		List<RecipeResponse> responses = new ArrayList<>();
+		try {
+			List<Recipe> recipes = recipeDAO.searchByCategory(idCat);
+			for(Recipe recipe:recipes) {
+				RecipeResponse recipeResponse = new RecipeResponse();
+				BeanUtils.copyProperties(recipe, recipeResponse);
+				responses.add(recipeResponse);
+			}
+			return responses;
+			
+		} catch (Exception e) {
+			log.error("Error at function searchByCategory in RecipeServiceImp....", e);
+			return null;
+		}
+	}
 }

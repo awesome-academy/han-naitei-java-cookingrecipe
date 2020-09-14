@@ -1,5 +1,8 @@
 package com.cookingrecipe.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
@@ -38,5 +41,25 @@ public class RecipeDAOImp extends GenericDAOImp<Recipe, Integer> implements IRec
 	public void createRecipe(Recipe recipe) {
 		log.info("Processing in RecipeDAOImp...");
 		getHibernateTemplate().save(recipe);
+	}
+
+	@Override
+	public List<Recipe> searchByName(String name) {
+		Session ss = getHibernateTemplate().getSessionFactory().getCurrentSession();
+		String hql ="select distinct r from Recipe r where lower(r.name) LIKE lower(:name)";
+		Query<Recipe> query = ss.createQuery(hql, Recipe.class).setParameter("name", "%"+name+"%");
+		List<Recipe> recipes = query.getResultList();
+		
+		return recipes;
+	}
+
+	@Override
+	public List<Recipe> searchByCategory(Integer id) {
+		Session ss = getHibernateTemplate().getSessionFactory().getCurrentSession();
+		String hql ="SELECT distinct r FROM Recipe r inner join r.categories c  WHERE c.id = :idCategory";
+		Query<Recipe> query = ss.createQuery(hql, Recipe.class).setParameter("idCategory", id);
+		List<Recipe> recipes = query.getResultList();
+		
+		return recipes;
 	}
 }
