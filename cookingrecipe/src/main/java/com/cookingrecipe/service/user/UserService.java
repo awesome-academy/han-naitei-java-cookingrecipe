@@ -14,11 +14,17 @@ public class UserService {
 	UserDao userDao;
 	
 	@Transactional (readOnly = false)
-	public void createAccount(UserRequest p) {
-		userDao.createAccount(p.convertUser());
+	public void createAccount(UserRequest p) throws Exception{
+		try {
+			userDao.createAccount(p.convertUser());			
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
+
 	}
 	
-	public User getById(Integer id) {
+	public User getById(Integer id) throws Exception{
 		return userDao.getById(id);
 	}
 }

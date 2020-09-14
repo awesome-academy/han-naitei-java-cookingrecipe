@@ -24,7 +24,7 @@ public class CategoryServiceImp implements ICategoryService{
 	private ICategoryDAO categoryDAO;
 
 	@Override
-	public List<PureCategory> findAll() {
+	public List<PureCategory> findAll() throws Exception{
 		List<Category> categories;
 		try {
 			categories = categoryDAO.findAll();
@@ -40,7 +40,7 @@ public class CategoryServiceImp implements ICategoryService{
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			throw e;
 		}
 	}
 

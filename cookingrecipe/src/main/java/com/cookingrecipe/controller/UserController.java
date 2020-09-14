@@ -26,9 +26,9 @@ public class UserController {
 	  }
 	
 	@PostMapping(value = "/users")
-	public String create(@ModelAttribute("newuser") UserRequest p, Model model) {
+	public String create(@ModelAttribute("newuser") UserRequest p, Model model) throws Exception {
 	 this.userService.createAccount(p);
-	 return "redirect:/signup";
+	 return "redirect:/";
 	}
 	
 	@RequestMapping(value =  "/users/{userId}")

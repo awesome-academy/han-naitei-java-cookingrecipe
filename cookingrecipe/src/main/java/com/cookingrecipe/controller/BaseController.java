@@ -23,7 +23,7 @@ public class BaseController {
 	private ICategoryService categoryService;
 	
 	@GetMapping(value = "/")
-	public String index(Model model) {
+	public String index(Model model) throws Exception {
 		List<RecipeResponse> recipes = recipeService.findAll();
 		List<PureCategory> categories = categoryService.findAll();
 		model.addAttribute("recipes", recipes);

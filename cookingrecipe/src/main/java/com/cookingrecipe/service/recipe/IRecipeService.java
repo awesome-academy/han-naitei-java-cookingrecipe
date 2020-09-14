@@ -8,9 +8,9 @@ import com.cookingrecipe.model.recipe.RecipeRequest;
 import com.cookingrecipe.model.recipe.RecipeResponse;
 
 public interface IRecipeService {
-	RecipeResponse getById(Integer id);
-	List<RecipeResponse> findAll();
-	Recipe createRecipe(Recipe r, RecipeRequest p, ArrayList<String> cats, ArrayList<String> steps);
+	List<RecipeResponse> findAll() throws Exception;
+	RecipeResponse getById(Integer id) throws Exception;
+	Recipe createRecipe(Recipe r, RecipeRequest p, ArrayList<String> cats, ArrayList<String> steps) throws Exception;
 	Recipe getRecipeById(Integer id);
 	List<RecipeResponse> searchByName(String name);
 	List<RecipeResponse> searchByCategory(Integer idCat);
